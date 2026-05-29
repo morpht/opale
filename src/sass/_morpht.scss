@@ -1,0 +1,343 @@
+@use "morpht_variables" as mv;
+@use "sass:map";
+
+/////
+/// General
+/////
+
+a, .badge-status-open {
+  color: #0051cc;
+  text-decoration: none;
+}
+
+#my-page .mypage-box:not(.block-welcome, .block-projectinformation, .block-text, .block-text_async) {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 1em;
+}
+
+p.buttons,
+.other-formats > span,
+#wiki_add_attachment > p,
+#content > .contextual,
+#content > .contextual > span:not(.drdn),
+#content > div[data-controller="quote-reply"] > .contextual,
+#query_form > .contextual,
+#query_form_with_buttons > .contextual {
+  & > a,
+  &:focus,
+  &:hover {
+    color: #212136;
+    text-decoration: none;
+  }
+}
+
+#activity,
+#search-results {
+  dd {
+    margin-bottom: 0;
+  }
+}
+
+////
+// HEADER
+////
+
+#wrapper {
+  #top-menu {
+    background: #111;
+
+    a {
+      color: #fff;
+      font-weight: normal;
+
+      &:hover {
+        color: #85c7ff;
+      }
+    }
+
+    // Hide "Logged in as".
+    #loggedas {
+      color: transparent;
+      pointer-events: none;
+
+      a {
+        pointer-events: auto;
+      }
+    }
+  }
+
+  #header {
+    background-color: #d5d5d5;
+    background-image: url("../images/morpht-logo.svg"), linear-gradient(#e6e6e6, mv.$brand-primary);
+    background-repeat: no-repeat, repeat-x;
+    background-position: 20px 5px, 0 0;
+    background-size: auto 38px;
+    @media (width <= 899px) {
+      background-color: mv.$brand-primary;
+      background-position: 15px 10px, 0 0;
+    }
+
+    a.mobile-toggle-button {
+      border-left: #ccc;
+      color: #333;
+    }
+
+    h1 {
+      margin-left: 170px !important;
+      padding: 12px 20px;
+      border-left: 1px solid #bcbcbc;
+      color: #333;
+      font-size: 1.5em;
+      font-weight: normal;
+    }
+
+    #quick-search {
+      @media (width <= 899px) {
+        display: none;
+      }
+    }
+
+    #quick-search,
+    #quick-search a,
+    #quick-search select {
+      color: #333;
+    }
+
+    #quick-search form label {
+      background-color: transparent;
+    }
+  }
+
+  #header > h1 .root,
+  #header > h1 a.root {
+    color: #333 !important;
+  }
+}
+
+////
+// PROJECTS
+////
+
+#projects-index {
+  a.icon,
+  a.icon-only {
+    color: #0051cc;
+  }
+}
+
+////
+// LOGIN
+////
+
+#wrapper {
+  .button-login-text {
+    background-image: none;
+  }
+}
+
+////
+// My Page -> Issues assigned to me.
+////
+
+// Hide "New issue" link by default.
+a.icon.new-issue {
+  display: none;
+}
+
+// Only show "New issue" link on project pages.
+body[class^="theme-opale project-"] a.icon.new-issue {
+  display: inline-block;
+}
+
+////
+// ISSUES LISTING
+////
+
+#history p.nodata {
+  display: none;
+}
+
+////
+// BESTEST TIMER
+////
+
+.bestest_timer_button:not(:hover) {
+  background-color: grey !important;
+  box-shadow: 0 1px 0 #555 !important;
+}
+
+.bestest_timer_button {
+  height: inherit !important;
+}
+
+.bestest_timer_activities {
+  // Text and radio button.
+  label {
+    line-height: 24px;
+
+    // Radio button.
+    input {
+      margin-right: 7px;
+    }
+  }
+}
+
+////
+// TABLE LISTINGS
+////
+
+tr.issue {
+  color: black;
+}
+
+// Priority colors.
+tr.priority-highest {
+  color: black;
+
+  td {
+    a {
+      // AA compliant contrast.
+      color: mv.$dark-blue;
+    }
+  }
+}
+
+// Background colors.
+@each $priority-id, $priority-color in mv.$priority-default-icons-map {
+  table.list tbody tr.priority-#{$priority-id} {
+    background: map.get($priority-color, color-bg);
+  }
+}
+
+////
+// WATCHERS
+////
+
+#sidebar #watchers {
+  ul {
+    // Remove margin which makes icons appear outside of container.
+    margin-right: 0;
+
+    li {
+      // Stop text breaking onto a new line.
+      // TODO: Remove when PurpleMine2 fixes this.
+      > a:not(.icon-only) {
+        display: inline;
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+////
+// SATISFACTION
+////
+
+// Revert container columns.
+.attributes .splitcontent:last-child {
+  .splitcontentleft {
+    width: auto;
+    padding-right: 10px;
+    float: left;
+  }
+}
+
+// Rename results label.
+.vote {
+  position: relative;
+
+  > .label {
+    visibility: hidden;
+
+    &::after {
+      content: "Are you satisfied?";
+      visibility: visible;
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+// Hide results elements.
+#vote_on_issues_nVotesUp + img,
+#vote_on_issues_nVotesDn + img {
+  display: none;
+}
+
+// Position "Voters" link.
+#vote_on_issues-link-voters {
+  position: absolute;
+  left: 110px;
+  @media only screen and (width <= 600px) {
+    top: 20px;
+    left: 0;
+  }
+}
+
+#vote_on_issues-issue-voters {
+  max-width: inherit !important;
+}
+
+// Hide vote elements.
+.myvote {
+  .label,
+  #vote_on_issues_MyVoteNil,
+  #vote_on_issues_MyVoteUpOn,
+  #vote_on_issues_MyVoteDnOn,
+  .vote_on_issues-issue-votes-nowrap:last-of-type > span {
+    display: none !important;
+  }
+}
+
+// Move vote buttons next to results.
+.vote {
+  width: 0;
+
+  .value {
+    position: relative;
+    min-width: 0 !important;
+
+    #vote_on_issues_nVotesUp,
+    #vote_on_issues_nVotesDn {
+      position: absolute;
+    }
+
+    #vote_on_issues_nVotesUp {
+      left: 0;
+    }
+
+    #vote_on_issues_nVotesDn {
+      left: 45px;
+    }
+  }
+}
+
+.myvote {
+  padding-left: 0 !important;
+
+  .vote_on_issues-icon-vote[href$="vote_val=vdn"] {
+    padding-left: 25px;
+  }
+}
+
+// Replace vote buttons.
+.myvote {
+  #vote_on_issues_MyVoteUpOff,
+  #vote_on_issues_MyVoteDnOff {
+    display: none !important;
+  }
+
+  .vote_on_issues-icon-vote {
+    padding-left: 5px;
+  }
+
+  .vote_on_issues-icon-vote[href$="vote_val=vup"]::after {
+    content: "👍";
+  }
+
+  .vote_on_issues-icon-vote[href$="vote_val=vdn"]::after {
+    content: "👎";
+  }
+}

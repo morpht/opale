@@ -1,6 +1,7 @@
 @use "variables";
 @use "functions";
 @use "mixins";
+@use "morpht_variables" as mv;
 
 
 // Unmodified code from other projects
@@ -47,3 +48,5 @@
 
 @use "components/plugins";
 @use "components/plugins-commercial";
+
+@use "morpht";
