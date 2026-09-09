@@ -8,6 +8,23 @@
 a, .badge-status-open {
   color: #0051cc;
   text-decoration: none;
+
+  &:hover {
+    color: #0065ff;
+  }
+}
+
+a.icon,
+a.icon-only {
+  &:focus,
+  &:hover {
+    color: mv.$blue;
+
+    svg,
+    svg.icon-svg {
+      stroke: mv.$blue;
+    }
+  }
 }
 
 #my-page .mypage-box:not(.block-welcome, .block-projectinformation, .block-text, .block-text_async) {
@@ -121,9 +138,77 @@ p.buttons,
 ////
 
 #projects-index {
+  ul.projects.root > li {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+
+  a.project {
+    color: #0051cc;
+
+    &:hover {
+      color: mv.$blue;
+
+      svg,
+      svg.icon-svg {
+        stroke: mv.$blue;
+      }
+    }
+  }
+
+  // Subprojects tree line
+  ul.projects ul.projects {
+    border-left: 2px solid #9fc4e6;
+  }
+
+  // Orange bookmark star icon
+  .icon-bookmarked-project,
+  .icon-bookmarked-project svg,
+  .icon-bookmarked-project::before,
+  .icon-fav,
+  .icon-fav svg {
+    stroke: mv.$orange !important;
+    fill: mv.$orange !important;
+    color: mv.$orange !important;
+  }
+
+  .wiki.description,
+  div.description {
+    color: #333;
+
+    a {
+      color: #0051cc;
+
+      &:hover {
+        color: mv.$blue;
+      }
+    }
+  }
+
   a.icon,
   a.icon-only {
     color: #0051cc;
+
+    &:hover {
+      color: mv.$blue;
+
+      svg,
+      svg.icon-svg {
+        stroke: mv.$blue;
+      }
+    }
+  }
+}
+
+// Legend bookmark icon
+p .icon-bookmarked-project {
+  color: mv.$orange !important;
+
+  svg {
+    stroke: mv.$orange !important;
+    fill: mv.$orange !important;
+    color: mv.$orange !important;
   }
 }
 
@@ -147,8 +232,12 @@ a.icon.new-issue {
 }
 
 // Only show "New issue" link on project pages.
-body[class^="theme-opale project-"] a.icon.new-issue {
-  display: inline-block;
+body[class*=" project-"],
+body[class^="theme-opale project-"],
+body[class^="theme-Opale project-"] {
+  a.icon.new-issue {
+    display: inline-block;
+  }
 }
 
 ////

@@ -20,6 +20,7 @@
   "scripts": {
     "prepare": "husky",
     "build": "grunt",
+    "deploy": "grunt && docker compose -f ../../../../docker-compose.yml exec redmine bundle exec rake assets:precompile RAILS_ENV=production && docker compose -f ../../../../docker-compose.yml exec redmine supervisorctl restart puma",
     "watch": "grunt watch",
     "lint:sass": "stylelint src/sass/**/*.scss",
     "lint": "npm run -S lint:sass"
