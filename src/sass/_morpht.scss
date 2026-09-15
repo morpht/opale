@@ -34,6 +34,22 @@ a.icon-only {
   font-size: 1em;
 }
 
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button {
+  border-color: mv.$blue mv.$blue mv.$blue-hover;
+  background-color: mv.$blue;
+  box-shadow: 0 1px 0 mv.$blue-shadow;
+
+  &:hover,
+  &:focus {
+    border-color: mv.$blue-hover mv.$blue-hover mv.$blue-border;
+    background-color: mv.$blue-hover;
+    box-shadow: 0 1px 0 mv.$blue-shadow;
+  }
+}
+
 p.buttons,
 .other-formats > span,
 #wiki_add_attachment > p,
@@ -215,6 +231,11 @@ p .icon-bookmarked-project {
 ////
 // LOGIN
 ////
+
+#login-form {
+  border: 1px solid #dadce6;
+  background-color: #fafbfc;
+}
 
 #wrapper {
   .button-login-text {
